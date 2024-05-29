@@ -16,6 +16,9 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        {{-- Fontawesome --}}
+        <script src="https://kit.fontawesome.com/39fcf45a94.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

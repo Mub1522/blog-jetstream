@@ -17,9 +17,17 @@
 
     <!-- Styles -->
     @livewireStyles
+
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/39fcf45a94.js" crossorigin="anonymous"></script>
+
+    {{-- Sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased sm:overflow-auto" :class="{
+    'overflow-hidden': open
+}" x-data="{ open: false }">
     <x-banner />
 
     <div class="min-h-screen bg-gray-100">
@@ -38,9 +46,19 @@
 
     </div>
 
+    <div x-show="open" x-on:click="open = !open" x-cloak
+        class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 sm:hidden"></div>
+
     @stack('modals')
 
     @livewireScripts
+
+    @session('swal')
+        <script>
+            Swal.fire(@json(session('swal')))
+        </script>
+    @endsession
+
 </body>
 
 </html>
