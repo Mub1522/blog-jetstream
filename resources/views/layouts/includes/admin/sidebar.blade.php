@@ -7,10 +7,10 @@
             'icon' => 'fa-solid fa-gauge-high',
         ],
         [
-            'name' => __('Articulos'),
-            'route' => route('dashboard'),
-            'active' => request()->routeIs(false),
-            'icon' => 'fa-solid fa-cubes-stacked',
+            'name' => __('Categories'),
+            'route' => route('admin.categories.index'),
+            'active' => request()->routeIs('admin.categories.*'),
+            'icon' => 'fa-solid fa-inbox',
         ],
     ];
 @endphp
