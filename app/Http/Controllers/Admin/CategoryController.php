@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::latest()->paginate();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -28,7 +31,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ], [
+            'name.required' => __('The name field is required.'),
+            'name.unique' => __('The category name already exists. Please choose another one.'),
+        ]);
+
+        Category::create($request->all());
+
+        return redirect()->route('admin.categories.index')->with('status', __('The category has been created successfully.'));
     }
 
     /**
@@ -44,7 +56,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.categories.edit');
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -52,14 +66,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $id,
+        ], [
+            'name.required' => __('The name field is required.'),
+            'name.unique' => __('The category name already exists. Please choose another one.'),
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect()->route('admin.categories.index')->with('status', __('The category has been updated successfully.'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('status', __('The category has been deleted successfully.'));
     }
 }

@@ -364,5 +364,16 @@
     "You may not delete your personal team.": "No se puede borrar su equipo personal.",
     "You may not leave a team that you created.": "No se puede abandonar un equipo que usted creó.",
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada.",
-    "Categories": "Categorías"
+    "Categories": "Categorías",
+    "Created at": "Creado el",
+    "New category": "Nueva categoría",
+    "Edit category": "Editar categoría",
+    "The category has been created successfully.": "La categoría se ha creado correctamente.",
+    "The category has been updated successfully.": "La categoría se ha actualizado correctamente.",
+    "The name field is required.": "El campo nombre es obligatorio.",
+    "The category name already exists. Please choose another one.": "El nombre de la categoría ya existe. Por favor, elija otro.",
+    "You're sure?": "¿Estás seguro?",
+    "Type \"confirm\" to delete the record.": "Escribe \"confirmar\" para eliminar el registro.",
+    "You must type \"confirm\" to proceed.": "Debes escribir \"confirmar\" para proceder.",
+    "The category has been deleted successfully.": "La categoría se ha eliminado correctamente."
 }

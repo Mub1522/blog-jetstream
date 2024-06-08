@@ -8,4 +8,5 @@ Route::get('/', function () {
 })->name('dashboard');
 
 
-Route::resource('/categories', CategoryController::class);
+Route::resource('/categories', CategoryController::class)
+    ->except('show');
