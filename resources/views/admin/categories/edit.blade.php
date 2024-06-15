@@ -33,33 +33,4 @@
         @csrf
         @method('DELETE')
     </form>
-
-    @push('js')
-        <script>
-            function deleteRecord() {
-                Swal.fire({
-                    title: `{{ __("You're sure?") }}`,
-                    html: '{{ __("Type \"confirm\" to delete the record.") }}',
-                    input: 'text',
-                    showCancelButton: true,
-                    confirmButtonColor: '#b91c1c',
-                    cancelButtonColor: '#ca8a04',
-                    confirmButtonText: '<i class="fa-solid fa-trash"></i> {{ __('Delete') }}',
-                    cancelButtonText: '<i class="fa-solid fa-ban"></i> {{ __('Cancel') }}',
-                    preConfirm: (inputValue) => {
-                        if (inputValue !== 'confirmar') {
-                            Swal.showValidationMessage(
-                                '{{ __('You must type "confirm" to proceed.') }}'
-                            );
-                            return false;
-                        }
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('formDelete').submit();
-                    }
-                });
-            }
-        </script>
-    @endpush
 </x-admin-layout>

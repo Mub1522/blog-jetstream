@@ -375,5 +375,10 @@
     "You're sure?": "¿Estás seguro?",
     "Type \"confirm\" to delete the record.": "Escribe \"confirmar\" para eliminar el registro.",
     "You must type \"confirm\" to proceed.": "Debes escribir \"confirmar\" para proceder.",
-    "The category has been deleted successfully.": "La categoría se ha eliminado correctamente."
+    "The category has been deleted successfully.": "La categoría se ha eliminado correctamente.",
+    "You cannot delete this category because it has posts.": "No puedes eliminar esta categoría porque tiene publicaciones.",
+    "Posts": "Publicaciones",
+    "New post": "Nueva publicación",
+    "Published": "Publicado",
+    "Draft": "Borrador"
 }

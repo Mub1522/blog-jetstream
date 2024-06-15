@@ -7,6 +7,12 @@
             'icon' => 'fa-solid fa-gauge-high',
         ],
         [
+            'name' => __('Posts'),
+            'route' => route('admin.posts.index'),
+            'active' => request()->routeIs('admin.posts.*'),
+            'icon' => 'fa-solid fa-paperclip',
+        ],
+        [
             'name' => __('Categories'),
             'route' => route('admin.categories.index'),
             'active' => request()->routeIs('admin.categories.*'),

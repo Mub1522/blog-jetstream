@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -44,14 +44,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return view('admin.categories.show');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -83,6 +75,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $posts = Post::where('category_id', $category->id)->exists();
+
+        if($posts){
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('You cannot delete this category because it has posts.')
+            ]);
+
+            return redirect()->route('admin.categories.edit', $category->id);
+        }
+
         $category->delete();
         return redirect()->route('admin.categories.index')->with('status', __('The category has been deleted successfully.'));
     }
