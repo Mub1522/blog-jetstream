@@ -1,14 +1,20 @@
 <x-admin-layout>
-
-    <ul class="space-y-8">
+    <div class="flex justify-end">
+        <a href="{{ route('admin.posts.create') }}">
+            <x-button><i class="fa-solid fa-plus"></i>  {{ __('New post') }}</x-button>
+        </a>
+    </div>
+    <ul class="space-y-8 mt-5">
         @foreach ($posts as $post)
-            <li class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <li class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
-                    <img class="aspect-video object-cover object-center" src="{{ $post->image_path }}" alt="">
+                    <a href="{{ route('admin.posts.edit', $post) }}">
+                        <img class="aspect-video object-cover object-center w-full" src="{{ $post->image }}">
+                    </a>
                 </div>
                 <div>
                     <h1 class="text-xl font-semibold">
-                        {{ $post->title }}
+                        <a href="{{ route('admin.posts.edit', $post) }}">{{ $post->title }}</a>
                     </h1>
                     <hr class="mt-1 mb-2">
                     <span @class([
@@ -19,7 +25,7 @@
                         {{ $post->published ? __('Published') : __('Draft') }}
                     </span>
                     <p class="text-gray-700 mt-2">
-                        {{ $post->excerpt }}
+                        {{ Str::limit($post->excerpt, 100, '...') }}
                     </p>
                     <div class="flex justify-end mt-4">
                         <a href="{{ route('admin.posts.edit', $post) }}"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,7 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -31,7 +34,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([ 
+            'title' => 'required|min:2',
+            'slug' => 'required|unique:posts,slug',
+            'category_id' => 'required|exists:categories,id',
+        ],[
+            'category_id.exists' => __('The category field does not exist.'),
+        ]);
+
+        $post = Post::create($request->all());
+
+        return redirect()->route('admin.posts.edit', $post)->with('status', __('The post has been created successfully.'));
     }
 
     /**
@@ -47,15 +60,28 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit');
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([ 
+            'title' => 'required|min:2',
+            'slug' => 'required|unique:posts,slug,' . $post->id,
+            'excerpt' => 'nullable',
+            'body' => 'nullable',
+            'category_id' => 'required|exists:categories,id',
+        ],[
+            'category_id.exists' => __('The category field does not exist.'),
+        ]);
+
+        $post->update($request->all());
+
+        return redirect()->route('admin.posts.edit', $post)->with('status', __('The post has been updated successfully.'));
     }
 
     /**

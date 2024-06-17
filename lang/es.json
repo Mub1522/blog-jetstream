@@ -380,5 +380,12 @@
     "Posts": "Publicaciones",
     "New post": "Nueva publicación",
     "Published": "Publicado",
-    "Draft": "Borrador"
+    "Draft": "Borrador",
+    "Title": "Título",
+    "The category field does not exist.": "El campo categoría no existe.",
+    "The post has been created successfully.": "La publicación se ha creado correctamente.",
+    "The post has been updated successfully.": "La publicación se ha actualizado correctamente.",
+    "Excerpt": "Extracto",
+    "Body": "Cuerpo",
+    "Edit post": "Editar publicación"
 }
