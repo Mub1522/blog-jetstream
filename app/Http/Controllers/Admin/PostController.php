@@ -72,9 +72,10 @@ class PostController extends Controller
         $request->validate([ 
             'title' => 'required|min:2',
             'slug' => 'required|unique:posts,slug,' . $post->id,
-            'excerpt' => 'nullable',
-            'body' => 'nullable',
+            'excerpt' => $request->published ? 'required' : 'nullable',
+            'body' => $request->published ? 'required' : 'nullable',
             'category_id' => 'required|exists:categories,id',
+            'published' => 'required|boolean'
         ],[
             'category_id.exists' => __('The category field does not exist.'),
         ]);
@@ -87,8 +88,9 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('status', __('The post has been deleted successfully.'));
     }
 }

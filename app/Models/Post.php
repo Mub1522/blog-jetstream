@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'excerpt', 'body','category_id'];
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published','category_id'];
 
     protected function image() : Attribute
     {

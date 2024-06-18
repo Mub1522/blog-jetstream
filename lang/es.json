@@ -386,6 +386,8 @@
     "The post has been created successfully.": "La publicación se ha creado correctamente.",
     "The post has been updated successfully.": "La publicación se ha actualizado correctamente.",
     "Excerpt": "Extracto",
-    "Body": "Cuerpo",
-    "Edit post": "Editar publicación"
+    "Body": "Contenido",
+    "Edit post": "Editar publicación",
+    "Publish now": "Publicar ahora",
+    "The post has been deleted successfully.": "La publicación se ha eliminado correctamente."
 }
